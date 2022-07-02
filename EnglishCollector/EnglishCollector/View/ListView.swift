@@ -8,28 +8,28 @@
 import SwiftUI
 
 struct ListView: View {
-    @ObservedObject var englishData = EnglishData()
-    @Binding var englishWordCount: Int
+    @EnvironmentObject var englishData : EnglishData
+//    @Binding var englishWordCount: Int
     @Binding var isGoToListView: Bool
 
     var body: some View {
         VStack {
-            Text("Your chosen word count: \(englishWordCount)")
+            Text("Your chosen word count: \(englishData.wordCount)")
 
             Button(action: {
                 Task {
+//                    await englishData.reload(isGoToBack: $isGoToListView)
                     do {
-                        let url = URL(string: "https://random-word-api.herokuapp.com/word?number\(englishWordCount)")
+                        let url = URL(string: "https://random-word-api.herokuapp.com/word?number=\(englishData.wordCount)")
                         let (data, response) = try await URLSession.shared.data(from: url!)
                         guard let httpResponse = response as? HTTPURLResponse, successRange.contains(httpResponse.statusCode) else {
                             // 오류처리
-                            
                             isGoToListView.toggle()
                             return
                         }
                         englishData.words = try JSONDecoder().decode([String].self, from: data)
                     } catch {
-                        isGoToListView.toggle()
+//                        isGoToListView.toggle()
                         fatalError("Data couldn't be loaded : \(error)")                    }
                 }
             }, label: {
@@ -42,9 +42,9 @@ struct ListView: View {
             }
             .frame(maxWidth:300)
             .task {
-                await englishData.reload()
+//                await englishData.reload()
             }
-            Picker("", selection: $englishWordCount, content: {
+            Picker("", selection: $englishData.wordCount, content: {
                 ForEach(1...15, id: \.self) {
                     Text("\($0)")
                 }
@@ -58,6 +58,6 @@ struct ListView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView(englishWordCount: .constant(5), isGoToListView: .constant(true))
+        ListView(isGoToListView: .constant(true))
     }
 }

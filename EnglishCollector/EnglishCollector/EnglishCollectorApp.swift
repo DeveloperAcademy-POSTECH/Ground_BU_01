@@ -11,7 +11,7 @@ import SwiftUI
 struct EnglishCollectorApp: App {
     var body: some Scene {
         WindowGroup {
-            SelectView()
+            MainTabView()
         }
     }
 }
