@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct EnglishCollectorApp: App {
+    @StateObject private var englishData: EnglishData = EnglishData()
     var body: some Scene {
         WindowGroup {
             MainTabView()
+                .environmentObject(englishData)
         }
     }
 }

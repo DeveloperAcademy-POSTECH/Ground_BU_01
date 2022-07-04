@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @StateObject var englishData = EnglishData()
+    @EnvironmentObject var englishData: EnglishData
+    
     var body: some View {
         TabView(content: {
             SelectView()
@@ -24,7 +25,6 @@ struct MainTabView: View {
                 }
         })
         .tabViewStyle(.automatic)
-        .environmentObject(englishData)
     }
 }
 

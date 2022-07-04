@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// haven't used yet
 struct EnglishWord: Identifiable {
     var id: UUID
     var word: String

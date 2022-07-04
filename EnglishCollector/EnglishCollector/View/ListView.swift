@@ -9,9 +9,8 @@ import SwiftUI
 
 struct ListView: View {
     @EnvironmentObject var englishData : EnglishData
-//    @Binding var englishWordCount: Int
     @Binding var isGoToListView: Bool
-
+    
     var body: some View {
         VStack {
             Text("Your chosen word count: \(englishData.wordCount)")
