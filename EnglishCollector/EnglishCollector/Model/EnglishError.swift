@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// haven't used yet
 enum EnglishError: Error {
     case networkerror
 }

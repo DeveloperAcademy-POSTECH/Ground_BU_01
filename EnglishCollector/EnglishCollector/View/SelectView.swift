@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectView: View {
-    @StateObject var englishData = EnglishData()
+    @EnvironmentObject var englishData : EnglishData
     @State var isGoToListView: Bool = false
     var body: some View {
         NavigationView(content: {
@@ -25,7 +25,7 @@ struct SelectView: View {
                 
                 NavigationLink(isActive:$isGoToListView,
                 destination: {
-                    ListView(englishWordCount: $englishData.wordCount, isGoToListView: $isGoToListView)
+                    ListView(isGoToListView: $isGoToListView)
                 }, label: {
                     EmptyView()
                 })
