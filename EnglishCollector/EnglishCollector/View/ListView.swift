@@ -29,7 +29,7 @@ struct ListView: View {
                         englishData.words = try JSONDecoder().decode([String].self, from: data)
                     } catch {
 //                        isGoToListView.toggle()
-                        fatalError("Data couldn't be loaded : \(error)")                    }
+                        print(error)                  }
                 }
             }, label: {
                 Text("Load")
