@@ -14,10 +14,10 @@ struct ListView: View {
     var body: some View {
         VStack {
             Text("Your chosen word count: \(englishData.wordCount)")
-
+            
             Button(action: {
                 Task {
-//                    await englishData.reload(isGoToBack: $isGoToListView)
+                    //                    await englishData.reload(isGoToBack: $isGoToListView)
                     do {
                         let url = URL(string: "https://random-word-api.herokuapp.com/word?number=\(englishData.wordCount)")
                         let (data, response) = try await URLSession.shared.data(from: url!)
@@ -28,7 +28,7 @@ struct ListView: View {
                         }
                         englishData.words = try JSONDecoder().decode([String].self, from: data)
                     } catch {
-//                        isGoToListView.toggle()
+                        //                        isGoToListView.toggle()
                         print(error)                  }
                 }
             }, label: {
@@ -41,7 +41,7 @@ struct ListView: View {
             }
             .frame(maxWidth:300)
             .task {
-//                await englishData.reload()
+                //                await englishData.reload()
             }
             Picker("", selection: $englishData.wordCount, content: {
                 ForEach(1...15, id: \.self) {
