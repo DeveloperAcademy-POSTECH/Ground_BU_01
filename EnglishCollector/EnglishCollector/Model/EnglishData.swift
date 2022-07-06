@@ -12,6 +12,7 @@ let successRange = 200..<300
 class EnglishData: ObservableObject {
     @Published var wordCount: Int = 0
     @Published var words: [String] = []
+    @Published var isGoToListView: Bool = false
     
     func reload() async {
         let url = URL(string: "https://random-word-api.herokuapp.com/word?number=\(self.wordCount)")!
