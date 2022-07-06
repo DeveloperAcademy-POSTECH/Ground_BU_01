@@ -24,7 +24,7 @@ struct SelectView: View {
                 .pickerStyle(.wheel)
                 
                 NavigationLink(isActive:$isGoToListView,
-                destination: {
+                               destination: {
                     ListView(isGoToListView: $isGoToListView)
                 }, label: {
                     EmptyView()

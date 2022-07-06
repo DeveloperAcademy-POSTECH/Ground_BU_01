@@ -25,7 +25,7 @@ class EnglishData: ObservableObject {
             self.words = try JSONDecoder().decode([String].self, from: data)
         } catch {
             // 오류처리
-            fatalError("Data couldn't be loaded : \(error)")
+            print(error)
         }
     }
 }

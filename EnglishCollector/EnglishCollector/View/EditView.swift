@@ -31,8 +31,8 @@ struct EditView: View {
             }
             HStack {
                 TextField("Edit", text: $editedword)
-                .frame(maxWidth:200, maxHeight:40 , alignment: .center)
-                .padding(.leading, 50)
+                    .frame(maxWidth:200, maxHeight:40 , alignment: .center)
+                    .padding(.leading, 50)
                 Button(action: {
                     print(editedword)
                     isEditFixed.toggle()
