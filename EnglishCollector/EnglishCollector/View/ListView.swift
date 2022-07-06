@@ -25,7 +25,8 @@ struct ListView: View {
                             englishData.isGoToListView.toggle()
                             return
                         }
-                        englishData.words = try JSONDecoder().decode([String].self, from: data)
+                        let newWords = try JSONDecoder().decode([String].self, from: data)
+                        englishData.changeWords(newWords: newWords)
                     } catch {
                         //                        isGoToListView.toggle()
                         print(error)                  }
@@ -34,7 +35,7 @@ struct ListView: View {
                 Text("Load")
             })
             List {
-                ForEach(englishData.words, id: \.self) { word in
+                ForEach(englishData.englishWord.words, id: \.self) { word in
                     Text(word)
                 }
             }
