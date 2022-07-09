@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SelectView: View {
     @EnvironmentObject var englishData : EnglishData
-    @State var isGoToListView: Bool = false
+    
     var body: some View {
         NavigationView(content: {
             VStack {
@@ -23,9 +23,9 @@ struct SelectView: View {
                 .frame(maxWidth: 200)
                 .pickerStyle(.wheel)
                 
-                NavigationLink(isActive:$isGoToListView,
+                NavigationLink(isActive:$englishData.isGoToListView,
                                destination: {
-                    ListView(isGoToListView: $isGoToListView)
+                    ListView()
                 }, label: {
                     EmptyView()
                 })
@@ -39,7 +39,7 @@ struct SelectView: View {
                         .font(.body)
                         .foregroundColor(.blue)
                         .onTapGesture {
-                            isGoToListView.toggle()
+                            englishData.isGoToListView.toggle()
                         }
                 }
                 .frame(width: 100, height: 40, alignment: .center)

@@ -22,7 +22,7 @@ struct HistoryView: View {
     
     var body: some View {
         List {
-            ForEach(Array(englishData.words.enumerated()), id: \.element) { index, word in
+            ForEach(Array(englishData.englishWord.words.enumerated()), id: \.element) { index, word in
                 HStack {
                     Text(word)
                     Spacer()

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ListView: View {
     @EnvironmentObject var englishData : EnglishData
-    @Binding var isGoToListView: Bool
     
     var body: some View {
         VStack {
@@ -23,10 +22,11 @@ struct ListView: View {
                         let (data, response) = try await URLSession.shared.data(from: url!)
                         guard let httpResponse = response as? HTTPURLResponse, successRange.contains(httpResponse.statusCode) else {
                             // 오류처리
-                            isGoToListView.toggle()
+                            englishData.isGoToListView.toggle()
                             return
                         }
-                        englishData.words = try JSONDecoder().decode([String].self, from: data)
+                        let newWords = try JSONDecoder().decode([String].self, from: data)
+                        englishData.changeWords(newWords: newWords)
                     } catch {
                         //                        isGoToListView.toggle()
                         print(error)                  }
@@ -35,7 +35,7 @@ struct ListView: View {
                 Text("Load")
             })
             List {
-                ForEach(englishData.words, id: \.self) { word in
+                ForEach(englishData.englishWord.words, id: \.self) { word in
                     Text(word)
                 }
             }
@@ -57,6 +57,6 @@ struct ListView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView(isGoToListView: .constant(true))
+        ListView()
     }
 }

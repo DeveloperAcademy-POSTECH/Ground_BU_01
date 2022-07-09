@@ -45,7 +45,8 @@ struct EditView: View {
         }
         .onDisappear(perform: {
             if isEditFixed == true {
-                englishData.words[indexOfOrigin] = editedword
+//                englishData.englishWord.words[indexOfOrigin] = editedword
+                englishData.changeWord(at: indexOfOrigin, newWord: editedword)
                 isEditFixed.toggle()
             } else {
                 // do nothing
